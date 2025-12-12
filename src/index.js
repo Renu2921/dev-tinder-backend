@@ -8,6 +8,7 @@ import { authValidation } from "../utils/middlewares.js";
 import authRouter from "../routes/auth.js";
 import profileRouter from "../routes/profile.js";
 import requestsRouter from "../routes/requests.js";
+import userRouter from "../routes/user.js";
 
 async function dbConnection() {
   try {
@@ -26,77 +27,7 @@ app.use(cookieParser());
 app.use("/",authRouter);
 app.use("/",authValidation,profileRouter);
 app.use("/", authValidation,requestsRouter );
-
-
-
-
-// app.get("/feed", authValidation, async (req, res) => {
-//   try {
-//     const users = await User.find();
-//     res
-//       .status(200)
-//       .send({
-//         success: true,
-//         data: users,
-//         message: "Users found Successfully!",
-//       });
-//   } catch (error) {
-//     res.status(401).send({ success: false, message: error.message });
-//   }
-// });
-
-// app.get("/feed/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const user = await User.findById(id);
-//     if (!user) {
-//       return res
-//         .status(401)
-//         .send({ success: false, message: "User not found!" });
-//     }
-//     res
-//       .status(200)
-//       .send({ success: true, data: user, message: "User found Successfully!" });
-//   } catch (error) {
-//     res.status(401).send({ success: false, message: error.message });
-//   }
-// });
-
-// app.patch("/feed/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const data = req.body;
-//     const user = await User.findByIdAndUpdate(id, data, {
-//       new: true,
-//       runValidators: true,
-//     });
-//     res
-//       .status(200)
-//       .send({
-//         success: true,
-//         data: user,
-//         message: "User Updated Successfully",
-//       });
-//   } catch (error) {
-//     res.status(401).send({ success: false, message: error.message });
-//   }
-// });
-
-// app.delete("/feed/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const user = await User.findByIdAndDelete(id);
-//     res
-//       .status(200)
-//       .send({
-//         success: true,
-//         data: user,
-//         message: "User Deleted Successfull y",
-//       });
-//   } catch (error) {
-//     res.status(401).send({ success: false, message: error.message });
-//   }
-// });
+app.use("/",authValidation,userRouter)
 
 
 

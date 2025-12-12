@@ -1,6 +1,7 @@
 import express from "express";
 const requestsRouter=express.Router();
-import { requests } from "../controller/requests.js";
+import { receivedReq, sendedReq } from "../controller/requests.js";
 
-requestsRouter.post("/request/send/:status/:toUserId",requests);
+requestsRouter.post("/request/send/:status/:toUserId",sendedReq);
+requestsRouter.post("/request/review/:status/:requestId",receivedReq)
 export default requestsRouter;

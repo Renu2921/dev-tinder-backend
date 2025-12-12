@@ -1,7 +1,8 @@
 import express from "express";
-import { profile } from "../controller/profile.js";
+import { profile, profileEdit } from "../controller/profile.js";
+import { joiValidation, updateJoiValidation } from "../utils/middlewares.js";
 const profileRouter=express.Router();
 
-profileRouter.get("/profile",profile);
-
+profileRouter.get("/profile/view",profile);
+profileRouter.patch("/profile/edit",updateJoiValidation,profileEdit)
 export default profileRouter;

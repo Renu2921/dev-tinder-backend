@@ -13,3 +13,13 @@ firstName: Joi.string().min(2).required(),
 });
 
 export default userSchema;
+
+export const updateUserSchema = Joi.object({
+  firstName: Joi.string(),
+  lastName: Joi.string(),
+  age: Joi.number().min(16),
+  gender: Joi.string().valid("male", "female", "other"),
+  about: Joi.string(),
+  skills: Joi.array().items(Joi.string()).max(10),
+  imageUrl: Joi.string()
+}); 

@@ -23,7 +23,7 @@ dbConnection();
 
 app.use(cors({
   origin:["http://localhost:5173",
-    "https://dev-tinder29.netlify.app/"
+    "https://dev-tinder29.netlify.app"
   ],
   credentials:true
 }));

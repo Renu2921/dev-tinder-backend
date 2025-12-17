@@ -12,6 +12,8 @@ const token= newUser.generateToken();
  res.cookie("token", token, {
       expires: new Date(Date.now() + 8 * 3600000),
       httpOnly: true,
+      secure: true,       
+  sameSite: "None"
     });
 
     res.status(200).json({
@@ -45,6 +47,8 @@ export const login=async (req, res) => {
     res.cookie("token", token, {
       expires: new Date(Date.now() + 8 * 3600000),
       httpOnly: true,
+      secure: true,       
+     sameSite: "None"
     });
     res.status(200).json({ success: true,data:user, message: "Login Successfully!!" });
   } catch (error) {

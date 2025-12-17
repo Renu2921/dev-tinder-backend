@@ -22,7 +22,9 @@ async function dbConnection() {
 dbConnection();
 
 app.use(cors({
-  origin:"http://localhost:5173",
+  origin:["http://localhost:5173",
+    "https://dev-tinder29.netlify.app/"
+  ],
   credentials:true
 }));
 app.use(express.urlencoded({ extended: true }));

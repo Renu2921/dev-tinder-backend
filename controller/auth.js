@@ -8,9 +8,13 @@ export const signup=async (req, res) => {
     const hashedPassword = await bcrypt.hash(user.password, 10);
     const newUser = new User({ ...user, password: hashedPassword });
     await newUser.save();
-    res
-      .status(200)
-      .send({
+const token= newUser.generateToken();
+ res.cookie("token", token, {
+      expires: new Date(Date.now() + 8 * 3600000),
+      httpOnly: true,
+    });
+
+    res.status(200).json({
         success: true,
         data: newUser,
         message: "New user added successfully",
@@ -42,7 +46,7 @@ export const login=async (req, res) => {
       expires: new Date(Date.now() + 8 * 3600000),
       httpOnly: true,
     });
-    res.status(200).send({ success: true, message: "Login Successfully!!" });
+    res.status(200).json({ success: true,data:user, message: "Login Successfully!!" });
   } catch (error) {
     res.status(400).send({ success: false, message: error.message });
   }

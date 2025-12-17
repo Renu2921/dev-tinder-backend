@@ -9,6 +9,7 @@ import authRouter from "../routes/auth.js";
 import profileRouter from "../routes/profile.js";
 import requestsRouter from "../routes/requests.js";
 import userRouter from "../routes/user.js";
+import cors from "cors";
 
 async function dbConnection() {
   try {
@@ -20,6 +21,10 @@ async function dbConnection() {
 }
 dbConnection();
 
+app.use(cors({
+  origin:"http://localhost:5173",
+  credentials:true
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());

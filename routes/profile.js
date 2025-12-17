@@ -4,5 +4,5 @@ import { joiValidation, updateJoiValidation } from "../utils/middlewares.js";
 const profileRouter=express.Router();
 
 profileRouter.get("/profile/view",profile);
-profileRouter.patch("/profile/edit",updateJoiValidation,profileEdit)
+profileRouter.put("/profile/edit",updateJoiValidation,profileEdit)
 export default profileRouter;

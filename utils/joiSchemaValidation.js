@@ -21,5 +21,5 @@ export const updateUserSchema = Joi.object({
   gender: Joi.string().valid("male", "female", "other"),
   about: Joi.string(),
   skills: Joi.array().items(Joi.string()).max(10),
-  imageUrl: Joi.string()
+  imageUrl: Joi.string().uri().optional(),
 }); 

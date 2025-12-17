@@ -6,7 +6,7 @@ export const requests=async(req,res)=>{
     try{
        const user=req.user;
        console.log(user);
-       const incomingRequests=await ConnectionReq.find({toUserId:user._id,status:"interested"}).populate("fromUserId" ,"firstName lastName age gender iamgeUrl about");
+       const incomingRequests=await ConnectionReq.find({toUserId:user._id,status:"interested"}).populate("fromUserId" ,"firstName lastName age gender imageUrl about");
        res.status(200).json({success:true,data:incomingRequests,message:"Pending Request List"});
     }
 catch(error){

@@ -4,11 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import { authValidation } from "../utils/middlewares.js";
-import authRouter from "../routes/auth.js";
-import profileRouter from "../routes/profile.js";
-import requestsRouter from "../routes/requests.js";
-import userRouter from "../routes/user.js";
+import { authValidation } from "./utils/middlewares.js";
+import authRouter from "./routes/auth.js";
+import profileRouter from "./routes/profile.js";
+import requestsRouter from "./routes/requests.js";
+import userRouter from "./routes/user.js";
 import cors from "cors";
 
 async function dbConnection() {

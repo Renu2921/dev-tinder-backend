@@ -10,6 +10,13 @@ import profileRouter from "./routes/profile.js";
 import requestsRouter from "./routes/requests.js";
 import userRouter from "./routes/user.js";
 import cors from "cors";
+import http from "http";
+import { initlializeSocket } from "./utils/ChatSocket.js";
+import chatRouter from "./routes/chat.js";
+
+
+const server=http.createServer(app);
+initlializeSocket(server);
 
 async function dbConnection() {
   try {
@@ -34,10 +41,11 @@ app.use(cookieParser());
 app.use("/",authRouter);
 app.use("/",authValidation,profileRouter);
 app.use("/", authValidation,requestsRouter );
-app.use("/",authValidation,userRouter)
+app.use("/",authValidation,userRouter);
+app.use("/",authValidation,chatRouter);
 
 
 
-app.listen(process.env.PORT || 3000, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log("Server running");
 });

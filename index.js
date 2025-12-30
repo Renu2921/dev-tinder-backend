@@ -1,5 +1,6 @@
 import express from "express";
 const app = express();
+app.set("trust proxy", 1);
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
@@ -17,6 +18,7 @@ import chatRouter from "./routes/chat.js";
 
 const server=http.createServer(app);
 initlializeSocket(server);
+
 
 async function dbConnection() {
   try {

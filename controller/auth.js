@@ -13,7 +13,7 @@ const token= newUser.generateToken();
       expires: new Date(Date.now() + 8 * 3600000),
       httpOnly: true,
       secure: true,       
-  sameSite: "None"
+  sameSite: "none"
     });
 
     res.status(200).json({

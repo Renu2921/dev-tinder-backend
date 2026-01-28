@@ -4,7 +4,7 @@ import userSchema, { updateUserSchema } from "./joiSchemaValidation.js";
 
 export const authValidation = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+   const token = req.header("Authorization")?.replace("Bearer ", "");
     if (!token) {
       return res.status(401).json({message:"token is not found!"});
     }

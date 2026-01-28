@@ -9,14 +9,15 @@ export const signup=async (req, res) => {
     const newUser = new User({ ...user, password: hashedPassword });
     await newUser.save();
 const token= newUser.generateToken();
- res.cookie("token", token, {
-      expires: new Date(Date.now() + 8 * 3600000),
-      httpOnly: true,
-      secure: true,       
-  sameSite: "none"
-    });
+//  res.cookie("token", token, {
+//       expires: new Date(Date.now() + 8 * 3600000),
+//       httpOnly: true,
+//       secure: true,       
+//   sameSite: "none"
+//     });
 
     res.status(200).json({
+      token:token,
         success: true,
         data: newUser,
         message: "New user added successfully",
@@ -44,13 +45,13 @@ export const login=async (req, res) => {
 
     const token = user.generateToken();
 
-    res.cookie("token", token, {
-      expires: new Date(Date.now() + 8 * 3600000),
-      httpOnly: true,
-      secure: true,       
-     sameSite: "None"
-    });
-    res.status(200).json({ success: true,data:user, message: "Login Successfully!!" });
+    // res.cookie("token", token, {
+    //   expires: new Date(Date.now() + 8 * 3600000),
+    //   httpOnly: true,
+    //   secure: true,       
+    //  sameSite: "None"
+    // });
+    res.status(200).json({ token:token,success: true,data:user, message: "Login Successfully!!" });
   } catch (error) {
     res.status(400).send({ success: false, message: error.message });
   }
